@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpsAutomator - Autonomous DevOps, SRE & Hybrid Platform</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+</head>
+<body>
+  <!-- Liquid Glass Background Animation Orbs (Inspired by liquidglassdesign.com) -->
+  <div class="liquid-canvas-bg">
+    <div class="liquid-orb liquid-orb-1"></div>
+    <div class="liquid-orb liquid-orb-2"></div>
+    <div class="liquid-orb liquid-orb-3"></div>
+    <div class="liquid-orb liquid-orb-4"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="brand-wrapper">
+      <div class="brand-logo">⚙️</div>
+      <div>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span class="brand-title">OpsAutomator</span>
+          <span class="brand-badge">Liquid Glass Edition</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="env-switch" id="env-switcher">
+        <button class="env-btn active" data-env="production">
+          <span class="env-dot prod"></span> Production
+        </button>
+        <button class="env-btn" data-env="staging">
+          <span class="env-dot stage"></span> Staging
+        </button>
+        <button class="env-btn" data-env="development">
+          <span class="env-dot dev"></span> Development
+        </button>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <div class="health-pill">
+        <span class="pulse-dot"></span>
+        <span id="header-uptime">99.98% Uptime</span>
+      </div>
+      <select class="tenant-select" id="tenant-select">
+        <option value="tenant-startup-1">PayStream Technologies (FinTech)</option>
+        <option value="tenant-startup-2">ShopPulse Cloud (Scaleup)</option>
+        <option value="tenant-startup-3">AcmeAI Labs (Early Stage)</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- App Layout -->
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <ul class="nav-list">
+        <li>
+          <button class="nav-item-btn" data-tab="notech">
+            <span class="nav-icon">🧙</span> No-Tech Founder Mode
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="hybrid">
+            <span class="nav-icon">🌐</span> Hybrid & On-Prem Mesh
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="integrations">
+            <span class="nav-icon">🔧</span> DevOps Tools Hub
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="github">
+            <span class="nav-icon">🐙</span> GitHub & CI/CD
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn active" data-tab="overview">
+            <span class="nav-icon">📊</span> Overview
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="infrastructure">
+            <span class="nav-icon">🏗️</span> Infrastructure (IaC)
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="pipelines">
+            <span class="nav-icon">🚀</span> CI/CD Pipelines
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="sre">
+            <span class="nav-icon">🛡️</span> SRE & Self-Healing
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="observability">
+            <span class="nav-icon">📈</span> Observability & Logs
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="finops">
+            <span class="nav-icon">💰</span> FinOps & Costs
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="security">
+            <span class="nav-icon">🔒</span> Security & Compliance
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="chaos">
+            <span class="nav-icon">💥</span> Chaos & Hardening Lab
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="agent">
+            <span class="nav-icon">🤖</span> DevOps Automator AI
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-tab="export">
+            <span class="nav-icon">📦</span> Export Bundle
+          </button>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="agent-status-card">
+          <div class="agent-status-header">
+            <span class="agent-name">⚙️ DevOps Automator</span>
+            <span class="agent-status-tag">● Active</span>
+          </div>
+          <p class="agent-vibe-text">"Automates infrastructure so your team ships faster and sleeps better."</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Content Body -->
+    <main class="app-content">
+
+      <!-- ==============================================================================
+           TAB: NO-TECH FOUNDER MODE
+      ============================================================================== -->
+      <section class="tab-pane" id="pane-notech">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">🧙 No-Tech Founder 1-Click Launchpad</h1>
+            <p class="section-desc">Zero technical jargon required. Choose your business model and let our AI build your entire infrastructure.</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">1. Select Your Startup Archetype</div>
+            <div id="notech-archetypes-list" style="display: flex; flex-direction: column; gap: 0.85rem;">
+              <!-- Populated dynamically -->
+            </div>
+
+            <div style="margin-top: 1.25rem;">
+              <div class="card-title" style="font-size: 0.95rem;">2. Deployment Target Preference</div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem;" id="notech-infra-selector">
+                <button class="btn btn-secondary btn-sm active-infra" data-infra="hybrid" style="flex-direction: column; padding: 0.6rem 0.5rem; text-align: center;">
+                  <strong style="font-size: 0.85rem;">🌐 Hybrid Mesh</strong>
+                  <span style="font-size: 0.7rem; color: var(--text-muted);">Cloud + On-Prem</span>
+                </button>
+                <button class="btn btn-secondary btn-sm" data-infra="cloud" style="flex-direction: column; padding: 0.6rem 0.5rem; text-align: center;">
+                  <strong style="font-size: 0.85rem;">☁️ 100% Cloud</strong>
+                  <span style="font-size: 0.7rem; color: var(--text-muted);">AWS Multi-AZ</span>
+                </button>
+                <button class="btn btn-secondary btn-sm" data-infra="onprem" style="flex-direction: column; padding: 0.6rem 0.5rem; text-align: center;">
+                  <strong style="font-size: 0.85rem;">🏢 On-Premise</strong>
+                  <span style="font-size: 0.7rem; color: var(--text-muted);">Bare-Metal / DC</span>
+                </button>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" id="btn-build-blueprint" style="width: 100%; margin-top: 1.25rem;">
+              🚀 Generate End-to-End Autonomous Blueprint
+            </button>
+          </div>
+
+          <div>
+            <!-- Blueprint Result Card -->
+            <div class="card" id="notech-blueprint-card">
+              <div class="card-title">
+                <span id="blueprint-title">Startup Operational Blueprint</span>
+                <span class="btn-sm btn-success" id="blueprint-sla">99.98% Uptime SLA</span>
+              </div>
+              <div id="blueprint-body" style="font-size: 0.875rem; line-height: 1.6; color: var(--text-secondary);">
+                Select a business archetype on the left and click Generate to see your plain-English blueprint and turnkey deliverables.
+              </div>
+            </div>
+
+            <!-- Plain English DevOps Glossary -->
+            <div class="card">
+              <div class="card-title">📖 Plain-English DevOps Glossary for Founders</div>
+              <div id="notech-glossary-list" style="display: flex; flex-direction: column; gap: 0.65rem; max-height: 250px; overflow-y: auto;">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================================================
+           TAB: HYBRID & ON-PREMISE MESH
+      ============================================================================== -->
+      <section class="tab-pane" id="pane-hybrid">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">🌐 Hybrid Cloud & On-Premise Infrastructure Mesh</h1>
+            <p class="section-desc">Manage unified workloads across AWS/GCP and Bare-Metal Data Centers connected by WireGuard VPN</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-secondary" id="btn-download-vpn-config">🔐 Download WireGuard .conf</button>
+            <button class="btn btn-danger" id="btn-toggle-failover">⚡ Test On-Prem Failover</button>
+          </div>
+        </div>
+
+        <!-- Interactive Visual Topology Diagram -->
+        <div class="hybrid-mesh-visualizer">
+          <div class="mesh-zone">
+            <div class="mesh-zone-header">
+              <span>☁️ Cloud Zone: AWS (us-east-1)</span>
+              <span class="btn-sm btn-success" style="padding: 0.1rem 0.4rem; font-size: 0.65rem;">Active</span>
+            </div>
+            <div style="font-size: 0.775rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.25rem;">
+              <div>• VPC Subnet: <code>10.0.0.0/16</code></div>
+              <div>• Application Load Balancer (ALB)</div>
+              <div>• Auto-scaling ECS/EKS Container Tier</div>
+            </div>
+          </div>
+
+          <div class="mesh-tunnel-bridge">
+            <span style="font-size: 0.75rem; color: #67e8f9; font-weight: 600; margin-bottom: 4px;">WireGuard Site-to-Site Tunnel</span>
+            <div class="tunnel-line"></div>
+            <span style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;" id="mesh-tunnel-stats">14ms latency • 0.0% loss</span>
+          </div>
+
+          <div class="mesh-zone">
+            <div class="mesh-zone-header">
+              <span>🏢 On-Premise Data Center (Dallas, TX)</span>
+              <span class="btn-sm btn-success" style="padding: 0.1rem 0.4rem; font-size: 0.65rem;" id="badge-onprem-status">Active-Local</span>
+            </div>
+            <div style="font-size: 0.775rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.25rem;">
+              <div>• Private Subnet: <code>192.168.10.0/24</code></div>
+              <div>• K3s Lightweight Kubernetes Master</div>
+              <div>• Bare-Metal PostgreSQL Primary Cluster</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bare-Metal Rack Nodes Table -->
+        <div class="card">
+          <div class="card-title">
+            <span>🖥️ On-Premise Bare-Metal Hardware Nodes</span>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">Real-time IPMI & Node-Exporter Telemetry</span>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Hostname / IP</th>
+                <th>Role & Service</th>
+                <th>Cores & RAM</th>
+                <th>Disk Usage</th>
+                <th>Hardware Temp</th>
+                <th>Cluster Status</th>
+              </tr>
+            </thead>
+            <tbody id="onprem-nodes-table-body">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==============================================================================
+           TAB: DEVOPS TOOLS INTEGRATION HUB
+      ============================================================================== -->
+      <section class="tab-pane" id="pane-integrations">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">🔧 DevOps Tools & Pipeline Integrations Hub</h1>
+            <p class="section-desc">Unified control plane connecting Jenkins, Git, Maven, npm, Docker, Kubernetes, Helm, Ansible, and Vault</p>
+          </div>
+        </div>
+
+        <div class="grid-3" id="integrations-grid">
+          <!-- Populated dynamically with 10 tools cards -->
+        </div>
+
+        <!-- Tool Config Preview Modal/Card -->
+        <div class="card" style="margin-top: 1.5rem;">
+          <div class="card-title">
+            <span id="tool-config-preview-title">Tool Configuration Generator</span>
+            <button class="btn btn-secondary btn-sm" id="btn-copy-tool-config">📋 Copy Config</button>
+          </div>
+          <pre class="code-box" id="tool-config-code-box">Select any tool above to view and generate its production configuration.</pre>
+        </div>
+      </section>
+
+      <!-- ==============================================================================
+           TAB: GITHUB & CI/CD PIPELINES TRIGGER
+      ============================================================================== -->
+      <section class="tab-pane" id="pane-github">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">🐙 GitHub Account & Automated Jenkins Trigger</h1>
+            <p class="section-desc">Connect and validate your GitHub profile. Automatically triggers Jenkins builds, runs tests, and deploys Docker containers to Kubernetes on git push.</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-primary" id="btn-simulate-github-push">🚀 Simulate Git Push Event</button>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <!-- Profile Connection & Validation Card -->
+          <div class="card">
+            <div class="card-title">
+              <span>GitHub Account Connection</span>
+              <span class="btn-sm btn-success" id="github-connection-status-pill">Connected & Validated</span>
+            </div>
+
+            <!-- Connected Profile Info -->
+            <div id="github-profile-connected-view" style="display: flex; flex-direction: column; gap: 1rem;">
+              <div style="display: flex; align-items: center; gap: 1rem; background: rgba(255, 255, 255, 0.04); padding: 1rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                <img id="github-profile-avatar" src="https://github.com/priyanknamdev.png" style="width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.4);" alt="Avatar">
+                <div style="flex: 1;">
+                  <div style="font-weight: 700; font-size: 1.05rem;" id="github-profile-name">Priyank Namdev</div>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">
+                    <a id="github-profile-link" href="https://github.com/priyanknamdev" target="_blank" style="color: #38bdf8; text-decoration: none;">@priyanknamdev</a>
+                    • <span id="github-profile-auth-type">Personal Access Token</span>
+                  </div>
+                </div>
+                <button class="btn btn-danger btn-sm" id="btn-disconnect-github">Disconnect</button>
+              </div>
+
+              <div>
+                <label style="font-size: 0.8rem; color: var(--text-secondary);">Target Active Repository</label>
+                <select id="github-repo-select" class="tenant-select" style="width: 100%; margin-top: 0.35rem;">
+                  <!-- Dynamically populated -->
+                </select>
+              </div>
+
+              <!-- Webhook Configuration Endpoint Details -->
+              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border); border-radius: 12px; padding: 1rem;">
+                <div style="font-weight: 600; font-size: 0.85rem; margin-bottom: 0.5rem; color: #fdba74;">
+                  🔗 GitHub Repository Webhook Details
+                </div>
+                <div style="font-size: 0.775rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+                  Add this webhook to your GitHub repo settings to trigger automated Jenkins builds on every commit:
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.8rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 0.4rem 0.6rem; border-radius: 6px;">
+                    <span>Payload URL: <code id="github-webhook-url">http://localhost:3000/api/github/webhook</code></span>
+                    <button class="btn-sm btn-secondary" id="btn-copy-webhook-url">Copy</button>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 0.4rem 0.6rem; border-radius: 6px;">
+                    <span>Secret: <code id="github-webhook-secret">whsec_e4b892a01f78c93de4582910fa</code></span>
+                    <button class="btn-sm btn-secondary" id="btn-copy-webhook-secret">Copy</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Disconnected / New Connection Form -->
+            <form id="github-connect-form" style="display: none; flex-direction: column; gap: 0.85rem;">
+              <div>
+                <label style="font-size: 0.8rem; color: var(--text-secondary);">GitHub Username / Organization</label>
+                <input type="text" id="github-input-username" class="chat-input" placeholder="e.g. priyanknamdev or octocat" style="width: 100%; margin-top: 0.35rem;" required>
+              </div>
+              <div>
+                <label style="font-size: 0.8rem; color: var(--text-secondary);">Personal Access Token (optional, for private repos)</label>
+                <input type="password" id="github-input-token" class="chat-input" placeholder="ghp_..." style="width: 100%; margin-top: 0.35rem;">
+              </div>
+              <div>
+                <label style="font-size: 0.8rem; color: var(--text-secondary);">Default Repository</label>
+                <input type="text" id="github-input-repo" class="chat-input" value="core-api" style="width: 100%; margin-top: 0.35rem;">
+              </div>
+              <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">
+                🐙 Validate & Connect GitHub Account
+              </button>
+            </form>
+          </div>
+
+          <!-- Live Webhook & Jenkins Build Stream -->
+          <div class="card">
+            <div class="card-title">
+              <span>⚡ Live GitHub Webhook & Jenkins Builds</span>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Real-time Git push listener</span>
+            </div>
+            <div id="github-events-feed" style="display: flex; flex-direction: column; gap: 0.75rem; max-height: 400px; overflow-y: auto;">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================================================
+           TAB: CHAOS & HARDENING LAB (BREAK THE SYSTEM)
+      ============================================================================== -->
+      <section class="tab-pane" id="pane-chaos">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">💥 Chaos Engineering & Hardening Laboratory</h1>
+            <p class="section-desc">Adversarial testing: Break the system, evaluate limits, discover weaknesses, and verify automated defenses.</p>
+          </div>
+          <div>
+            <button class="btn btn-danger" id="btn-run-chaos-battery">⚡ Run Full Chaos Battery</button>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <!-- Chaos Battery Run Card -->
+          <div class="card">
+            <div class="card-title">
+              <span>Automated Adversarial Attack Suite</span>
+              <span id="chaos-score-pill" class="btn-sm btn-success">100% Robustness</span>
+            </div>
+            <div id="chaos-results-list" style="display: flex; flex-direction: column; gap: 0.85rem;">
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Click "Run Full Chaos Battery" to execute adversarial edge cases (Input Fuzzing, Concurrency Storm, SRE Flapping, Network Partition, FinOps Exploit).</p>
+            </div>
+          </div>
+
+          <!-- Limits & Demerits Transparent Report -->
+          <div class="card">
+            <div class="card-title">
+              <span>System Limits, Demerits & Hardening Audit</span>
+              <span class="btn-sm btn-secondary" style="font-size: 0.7rem;">SRE Disclosure</span>
+            </div>
+            <div id="resilience-report-body" style="display: flex; flex-direction: column; gap: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================================================
+           TAB: OVERVIEW
+      ============================================================================== -->
+      <section class="tab-pane active" id="pane-overview">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">Operations Command Center</h1>
+            <p class="section-desc">Real-time status of cloud, on-premise, and hybrid operations</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-secondary" id="btn-refresh-overview">↻ Refresh</button>
+            <button class="btn btn-primary" id="btn-trigger-deploy-quick">⚡ Quick Deploy</button>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-title">Availability Uptime <span>📈</span></span>
+            <div class="kpi-value" id="kpi-uptime">99.98%</div>
+            <span class="kpi-subtext positive">Target: 99.90% (+0.08% SLA buffer)</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-title">Mean Time to Recovery <span>⏱️</span></span>
+            <div class="kpi-value" id="kpi-mttr">14m</div>
+            <span class="kpi-subtext positive">Target: < 30m (Decreased 62% MoM)</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-title">Deployments Today <span>🚀</span></span>
+            <div class="kpi-value" id="kpi-deployments">8 / day</div>
+            <span class="kpi-subtext positive">100% Zero-downtime Blue/Green</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-title">Monthly Cloud Spend <span>💰</span></span>
+            <div class="kpi-value" id="kpi-spend">$4,680</div>
+            <span class="kpi-subtext warning">$760 / mo savings identified</span>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <!-- Architecture Status Card -->
+          <div class="card">
+            <div class="card-title">
+              <span>🏗️ Active Multi-AZ Architecture</span>
+              <span class="btn-sm btn-success" id="badge-drift-status">In-Sync</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              Region: <strong>AWS us-east-1</strong> (Multi-AZ: us-east-1a, us-east-1b)
+            </p>
+            <div id="overview-resource-list" style="display: flex; flex-direction: column; gap: 0.6rem;">
+              <!-- Dynamic resource list populated by JS -->
+            </div>
+          </div>
+
+          <!-- Real-Time Activity Feed -->
+          <div class="card">
+            <div class="card-title">
+              <span>⚡ Recent Activity & Self-Healing Events</span>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Real-time stream</span>
+            </div>
+            <div id="overview-activity-feed" style="display: flex; flex-direction: column; gap: 0.75rem; max-height: 280px; overflow-y: auto;">
+              <!-- Dynamic activity items -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================================================
+           TAB: INFRASTRUCTURE (IaC)
+      ============================================================================== -->
+      <section class="tab-pane" id="pane-infrastructure">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">Infrastructure as Code Studio</h1>
+            <p class="section-desc">Generate, validate, and drift-check production Terraform & Kubernetes architectures</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-secondary" id="btn-simulate-drift">Simulate Drift</button>
+            <button class="btn btn-primary" id="btn-remediate-drift">Remediate & Apply</button>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <div class="card">
+              <div class="card-title">Configure Architecture Parameters</div>
+              <form id="iac-config-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                  <div>
+                    <label style="font-size: 0.8rem; color: var(--text-secondary);">Target Cloud</label>
+                    <select id="iac-provider" class="tenant-select" style="width: 100%; margin-top: 0.35rem;">
+                      <option value="aws">AWS (ALB + ASG + VPC + RDS)</option>
+                      <option value="kubernetes">Kubernetes (Rolling Update + HPA)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label style="font-size: 0.8rem; color: var(--text-secondary);">Application Identifier</label>
+                    <input type="text" id="iac-app-name" class="chat-input" value="paystream-api" style="width: 100%; margin-top: 0.35rem;">
+                  </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                  <div>
+                    <label style="font-size: 0.8rem; color: var(--text-secondary);">Instance Sizing</label>
+                    <select id="iac-instance-type" class="tenant-select" style="width: 100%; margin-top: 0.35rem;">
+                      <option value="t3.medium">t3.medium (2 vCPU, 4GB RAM)</option>
+                      <option value="t3.large">t3.large (2 vCPU, 8GB RAM)</option>
+                      <option value="t3.xlarge">t3.xlarge (4 vCPU, 16GB RAM)</option>
+                      <option value="c6g.large">c6g.large (Graviton ARM)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label style="font-size: 0.8rem; color: var(--text-secondary);">Min / Max Capacity</label>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 0.35rem;">
+                      <input type="number" id="iac-min" class="chat-input" value="2" min="1" max="10" style="width: 50%;">
+                      <input type="number" id="iac-max" class="chat-input" value="10" min="2" max="50" style="width: 50%;">
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">⚙️ Generate & Verify Code</button>
+              </form>
+            </div>
+
+            <!-- Infracost Estimator Breakdown -->
+            <div class="card">
+              <div class="card-title">
+                <span>💰 Infracost Estimation</span>
+                <span id="iac-total-cost" style="color: var(--accent); font-weight: 700;">$249 / mo</span>
+              </div>
+              <div id="iac-cost-breakdown" style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem;">
+                <!-- Filled dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Code View Box -->
+          <div class="card">
+            <div class="card-title">
+              <span>Production Infrastructure Code</span>
+              <button class="btn btn-secondary btn-sm" id="btn-copy-iac">📋 Copy Code</button>
+            </div>
+            <pre class="code-box" id="iac-code-viewer">Loading Terraform templates...</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================================================
+           TAB: CI/CD PIPELINES
+      ============================================================================== -->
+      <section class="tab-pane" id="pane-pipelines">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">Zero-Downtime CI/CD Pipeline Engine</h1>
+            <p class="section-desc">Automated security scanning, container builds, and Blue-Green traffic routing</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-danger" id="btn-simulate-rollback">⚠️ Simulate Rollback</button>
+            <button class="btn btn-primary" id="btn-trigger-pipeline">🚀 Trigger Pipeline Run</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span id="active-pipeline-title">Production Blue-Green Deployment #a9f24c1</span>
+            <span class="btn-sm btn-success" id="active-pipeline-status">Success</span>
+          </div>
+          <div class="pipeline-stepper" id="pipeline-stepper-container">
+            <!-- Dynamic step nodes -->
+          </div>
+        </div>
+
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="terminal-title">Runner: github-actions-runner-pod-42a (us-east-1)</span>
+            <span style="font-size: 0.7rem; color: var(--text-muted);" id="terminal-clock">Streaming</span>
+          </div>
+          <div class="terminal-body" id="pipeline-logs-body">
+            <!-- Logs injected dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================================================
+           TAB: SRE & SELF-HEALING
+      ============================================================================== -->
+      <section class="tab-pane" id="pane-sre">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">SRE Reliability & Autonomous Self-Healing</h1>
+            <p class="section-desc">Automated failure detection, SLO error budget management, and zero-touch healing</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-danger" id="btn-test-5xx-incident">Simulate 5xx Spike</button>
+            <button class="btn btn-secondary" id="btn-test-cpu-incident">Simulate CPU Surge</button>
+          </div>
+        </div>
+
+        <div class="kpi-grid" id="slo-grid-container">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>🛡️ Autonomous Self-Healing Rules</span>
+            <span style="font-size: 0.8rem; color: #6ee7b7;">4 Playbooks Armed</span>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Playbook Name</th>
+                <th>Trigger Condition</th>
+                <th>Autonomous Remediation</th>
+                <th>Executed</th>
+                <th>Enabled</th>
+              </tr>
+            </thead>
+            <tbody id="self-healing-rules-body">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Incidents & Automated Resolution History</div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Incident ID</th>
+                <th>Title</th>
+                <th>Severity</th>
+                <th>Resolution Status</th>
+                <th>Time to Recovery</th>
+                <th>Self-Healed?</th>
+              </tr>
+            </thead>
+            <tbody id="incidents-table-body">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==============================================================================
+           TAB: OBSERVABILITY & LOGS
+      ============================================================================== -->
+      <section class="tab-pane" id="pane-observability">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">Observability & Prometheus Telemetry</h1>
+            <p class="section-desc">Real-time metrics, P95 latency percentiles, and live container log streams</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <a href="/api/observability/metrics?format=prometheus" target="_blank" class="btn btn-secondary btn-sm">Prometheus /metrics</a>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">
+              <span>HTTP Traffic (Requests / sec)</span>
+              <span id="val-current-rps" style="color: var(--info); font-weight: 700;">184 req/s</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-rps" height="200"></canvas>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <span>P95 & P99 Latency (ms)</span>
+              <span id="val-current-latency" style="color: var(--accent); font-weight: 700;">P95: 46ms</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-latency" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Live Structured Log Stream</span>
+            <div style="display: flex; gap: 0.5rem;">
+              <select id="log-filter-service" class="tenant-select" style="font-size: 0.75rem;">
+                <option value="all">All Services</option>
+                <option value="core-api">core-api</option>
+                <option value="alb-ingress">alb-ingress</option>
+                <option value="auth-svc">auth-svc</option>
+                <option value="cache-redis">cache-redis</option>
+              </select>
+            </div>
+          </div>
+          <div class="terminal-body" id="log-explorer-body" style="max-height: 240px; background: rgba(3, 7, 18, 0.88); border-radius: 12px;">
+            <!-- Logs populated dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================================================
+           TAB: FINOPS & COSTS
+      ============================================================================== -->
+      <section class="tab-pane" id="pane-finops">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">FinOps Cloud Cost Optimization</h1>
+            <p class="section-desc">Analyze cloud spending and apply one-click right-sizing recommendations</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Monthly Cloud Spend by Service</div>
+            <div id="finops-breakdown-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <span>Right-Sizing Advisor</span>
+              <span class="btn-sm btn-success" id="finops-savings-total">$760 / mo savings</span>
+            </div>
+            <div id="finops-recommendations-list" style="display: flex; flex-direction: column; gap: 1rem;">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================================================
+           TAB: SECURITY & COMPLIANCE
+      ============================================================================== -->
+      <section class="tab-pane" id="pane-security">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">Security & Compliance Hardening</h1>
+            <p class="section-desc">Continuous vulnerability scanning, secrets detection, and SOC 2 / CIS controls</p>
+          </div>
+          <div>
+            <button class="btn btn-primary" id="btn-run-security-scan">🛡️ Run Full Scan</button>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">
+              <span>Compliance Framework Readiness</span>
+              <span id="security-score-pill" class="btn-sm btn-success">94% Compliant</span>
+            </div>
+            <div id="security-frameworks-list" style="display: flex; flex-direction: column; gap: 1rem;">
+              <!-- Dynamic -->
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Vulnerability Scanner (Trivy & SAST)</div>
+            <div id="security-vulns-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <!-- Dynamic -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================================================
+           TAB: DEVOPS AUTOMATOR AI
+      ============================================================================== -->
+      <section class="tab-pane" id="pane-agent">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">DevOps Automator AI Assistant</h1>
+            <p class="section-desc">Powered by the persona, workflows, and deliverables from engineering-devops-automator.md</p>
+          </div>
+        </div>
+
+        <div class="prompt-suggestions">
+          <button class="chip-btn" data-prompt="Assess my startup infrastructure and generate hybrid architecture">🏗️ Assess Hybrid Infrastructure</button>
+          <button class="chip-btn" data-prompt="Design zero-downtime Blue-Green CI/CD pipeline with Jenkins and Maven">🚀 Design Jenkins & Maven Pipeline</button>
+          <button class="chip-btn" data-prompt="Investigate recent 5xx error rate spike and recommend automated self-healing">🛡️ Investigate 5xx Spike</button>
+          <button class="chip-btn" data-prompt="Perform FinOps cloud cost reduction audit to cut 20% spend">💰 FinOps Cost Audit</button>
+          <button class="chip-btn" data-prompt="Audit security posture for SOC 2 Type II readiness">🔒 SOC 2 Security Audit</button>
+        </div>
+
+        <div class="agent-chat-container">
+          <div class="chat-messages" id="agent-chat-messages">
+            <div class="message agent">
+              <div class="message-avatar">⚙️</div>
+              <div class="message-bubble">
+                <strong>DevOps Automator:</strong>
+                <p>Hello! I am your <strong>DevOps Automator Agent</strong>. I specialize in infrastructure automation, zero-downtime deployment pipelines, and SRE reliability so your team ships faster and sleeps better.</p>
+                <p style="margin-top: 0.5rem;">How can I help you manage, maintain, or build your Cloud, On-Premise, or Hybrid infrastructure today?</p>
+              </div>
+            </div>
+          </div>
+
+          <form class="chat-input-bar" id="agent-chat-form">
+            <input type="text" id="agent-chat-input" class="chat-input" placeholder="Ask DevOps Automator to design architectures, debug incidents, or optimize pipelines...">
+            <button type="submit" class="btn btn-primary">Send</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ==============================================================================
+           TAB: EXPORT BUNDLE
+      ============================================================================== -->
+      <section class="tab-pane" id="pane-export">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">Export Infrastructure & Automation Kit</h1>
+            <p class="section-desc">Download production-ready Terraform, Kubernetes, Jenkinsfile, Ansible, and Prometheus assets</p>
+          </div>
+          <div>
+            <button class="btn btn-primary" id="btn-download-kit">⬇️ Download Complete Production Kit (.json)</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Production Deliverables Included in Kit</div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>File Path</th>
+                <th>Target Technology</th>
+                <th>Description</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>terraform/main.tf</code></td>
+                <td>Terraform (AWS)</td>
+                <td>VPC, Multi-AZ Subnets, ALB, Auto-Scaling Group, CloudWatch Alarms</td>
+                <td><button class="btn-sm btn-secondary copy-btn" data-target="terraform">View Code</button></td>
+              </tr>
+              <tr>
+                <td><code>Jenkinsfile</code></td>
+                <td>Jenkins CI/CD</td>
+                <td>Declarative pipeline with Maven, Docker, Trivy, and K8s deploy</td>
+                <td><button class="btn-sm btn-secondary copy-btn" data-target="jenkins">View Code</button></td>
+              </tr>
+              <tr>
+                <td><code>ansible/site.yml</code></td>
+                <td>Ansible Engine</td>
+                <td>Bare-metal and On-Premise server hardening and K3s installation</td>
+                <td><button class="btn-sm btn-secondary copy-btn" data-target="ansible">View Code</button></td>
+              </tr>
+              <tr>
+                <td><code>k8s/deployment.yaml</code></td>
+                <td>Kubernetes & K3s</td>
+                <td>Rolling update deployment, service, and HorizontalPodAutoscaler</td>
+                <td><button class="btn-sm btn-secondary copy-btn" data-target="k8s">View Code</button></td>
+              </tr>
+              <tr>
+                <td><code>wireguard/wg0.conf</code></td>
+                <td>WireGuard VPN</td>
+                <td>Site-to-site encrypted mesh connecting Cloud VPC with On-Premise DC</td>
+                <td><button class="btn-sm btn-secondary copy-btn" data-target="vpn">View Code</button></td>
+              </tr>
+              <tr>
+                <td><code>tests/load-test.js</code></td>
+                <td>k6 Testing</td>
+                <td>Load and latency stress verification against P95 SLOs</td>
+                <td><button class="btn-sm btn-secondary copy-btn" data-target="k6">View Code</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "ops-automator-saas",
+  "version": "1.0.0",
+  "description": "Autonomous DevOps & SRE SaaS Platform for Businesses and Startups",
+  "type": "module",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "dependencies": {}
+}
